@@ -32,6 +32,9 @@ let SAFE_PLAYERS = 0;
 
 let indexPlayers = [];
 
+var img1 = new Image(); // Image constructor
+var img2 = new Image(); // Image constructor
+
 //musics
 const bgMusic = new Audio('./music/bg.mp3')
 //bgMusic.loop = true
@@ -63,26 +66,45 @@ async function delay(ms){
 class Doll{
     lockBack(){
    
-        const color3 = new THREE.Color("rgb(50,205,50)");
+      /*  const color3 = new THREE.Color("rgb(50,205,50)");
        const geometry = new THREE.SphereGeometry( .4,32, 16);
        const material = new THREE.MeshBasicMaterial( {color : color3  });
        const green_light = new THREE.Mesh( geometry, material );
-       scene.add( green_light );
-       green_light.position.z=1;
-       green_light.position.y = .9;
+
+         //  scene.add(img1);
+     // img1.position.z=1;
+      img1.position.y = .9;
+*/
+       
+       img1.src = 'doll_1.PNG';
+       img1.alt = 'alt';
+      
+       document.body.appendChild(img1);
+       img1.classList.add("mystyle");
        setTimeout(() => FacingBack = true,150)
        
     }
 
     lockForward(){
 
-        const color2 = new THREE.Color( 0xff0000 );
+        /*const color2 = new THREE.Color( 0xff0000 );
         const geometry = new THREE.SphereGeometry( .4,32, 16);
         const material = new THREE.MeshBasicMaterial( {color : color2  });
         const green_light = new THREE.Mesh( geometry, material );
-        scene.add( green_light );
-        green_light.position.z=1;
-        green_light.position.y = .9;
+         //scene.add( img2 );
+     //   img2.position.z=1;
+        img2.position.y = .9;
+        
+        */
+        
+     
+        img2.src = 'doll_2.PNG';
+        img2.alt = 'alt';
+        document.body.removeChild(img1);
+        document.body.appendChild(img2);
+        console.log("je suis laaaaaaaaaaaaaaaa")
+        
+        img2.classList.add("mystyle");
         setTimeout(() => FacingBack = false, 450)
     }
    async  start(){
@@ -90,6 +112,7 @@ class Doll{
            await delay((Math.random() * 1000) + 1000);
            this.lockForward();
            await delay((Math.random() * 750) +750);
+           document.body.removeChild(img2);
            this.start();
     }
 }
